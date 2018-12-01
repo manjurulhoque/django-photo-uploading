@@ -1,0 +1,16 @@
+{% extends 'app.html' %}
+
+{% block content %}
+
+    <div class="row">
+        {% for photo in photos %}
+            <div class="col-md-4" style="margin-bottom: 10px">
+                <img src="{{ photo.photo.url }}" class="img-responsive">
+                <p style="margin-top: 5px"><strong>{{ photo.title }}</strong></p>
+                Uploaded By - <strong><a href="
+                    {% url 'instaa:user_photos' photo.user.username %}">{{ photo.user.username }}</a></strong>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

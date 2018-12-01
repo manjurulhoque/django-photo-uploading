@@ -1,0 +1,22 @@
+{% extends 'app.html' %}
+
+{% block content %}
+
+    <div class="row">
+        {% if p_user %}
+            <h3 class="text-center">Photos By {{ p_user.username }}</h3>
+        {% endif %}
+
+        {% for photo in photos %}
+            <div class="col-md-4" style="margin-bottom: 10px">
+                <img src="{{ photo.photo.url }}" class="img-responsive">
+                <p style="margin-top: 5px"><strong>{{ photo.title }}</strong></p>
+                <form action="{% url 'instaa:delete_photo' photo.id %}" method="post" style="margin-top: 15px">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete it!" class="btn btn-danger">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
